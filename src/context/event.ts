@@ -11,7 +11,7 @@ const openAsync = <V>(Component: ModalInfo["Component"], props?: ModalInfo["prop
       id,
       Component,
       props,
-      resolver: (value: unknown) => {
+      resolver: (value) => {
         resolve(value as V);
         modal.close();
       },

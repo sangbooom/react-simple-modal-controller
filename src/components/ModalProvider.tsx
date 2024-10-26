@@ -5,7 +5,6 @@ import Portal from "./Portal";
 
 const ModalProvider = ({ children }: PropsWithChildren) => {
   const modalInfos = useSyncModalStore();
-  console.log({ modalInfos });
 
   useEffect(() => {
     return () => {

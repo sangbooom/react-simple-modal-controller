@@ -1,4 +1,4 @@
-import { ModalInfo } from "../types/modal";
+import { ModalInfo, ModalResolver } from "../types/modal";
 
 export type ModalReducerAction<V = unknown> =
   | {
@@ -12,7 +12,7 @@ export type ModalReducerAction<V = unknown> =
       id: ModalInfo["id"];
       Component: ModalInfo["Component"];
       props: ModalInfo["props"];
-      resolver: ModalInfo<V>["resolve"];
+      resolver: ModalResolver<V>;
     }
   | { type: "CLOSE" }
   | { type: "CLEAR" };

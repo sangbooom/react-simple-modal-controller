@@ -1,4 +1,5 @@
 import { modal } from "../context/event";
+import { ModalResolver } from "../types/modal";
 
 const openModal = () => {
   modal.open(TestModal, { title: "test" });
@@ -30,9 +31,6 @@ const TestPage = () => {
 
 export default TestPage;
 
-/**
- * 아래는 모달 컴포넌트
- */
 
 const TestModal = ({ title }: { title: string }) => {
   return (
@@ -53,7 +51,7 @@ const TestModal = ({ title }: { title: string }) => {
   );
 };
 
-const TestAsyncModal = ({ resolve, title }: { resolve: (value: string) => void; title: string }) => {
+const TestAsyncModal = ({ resolve, title }: { resolve: ModalResolver<string>; title: string }) => {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
