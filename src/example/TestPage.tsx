@@ -1,3 +1,4 @@
+import React from "react";
 import { modal } from "../lib/context/event";
 import { ModalResolver } from "../lib/types/modal";
 
