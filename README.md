@@ -1,10 +1,15 @@
 # react-simple-modal-controller
 
+A simple and convenient modal controller for react
+
 ## Installation
 
 ```
 npm install react-simple-modal-controller
 ```
+
+## React dependency
+React >= 16.8.0
 
 ## Setting
 
