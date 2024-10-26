@@ -1,5 +1,5 @@
-import { modal } from "../context/event";
-import { ModalResolver } from "../types/modal";
+import { modal } from "../lib/context/event";
+import { ModalResolver } from "../lib/types/modal";
 
 const openModal = () => {
   modal.open(TestModal, { title: "test" });
@@ -30,7 +30,6 @@ const TestPage = () => {
 };
 
 export default TestPage;
-
 
 const TestModal = ({ title }: { title: string }) => {
   return (
