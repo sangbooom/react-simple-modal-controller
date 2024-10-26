@@ -1,9 +1,13 @@
-import { PropsWithChildren, useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 import { modal } from "../context/event";
 import { useSyncModalStore } from "../context/useSyncModalStore";
 import Portal from "./Portal";
 
-const ModalProvider = ({ children }: PropsWithChildren) => {
+interface ModalProviderProps {
+  children: ReactNode;
+}
+
+const ModalProvider = ({ children }: ModalProviderProps) => {
   const modalInfos = useSyncModalStore();
 
   useEffect(() => {
