@@ -2,21 +2,21 @@
 
 A simple and convenient modal controller for react
 
+## React dependency
+`React >= 16.8.0`
+
 ## Installation
 
 ```
 npm install react-simple-modal-controller
 ```
 
-## React dependency
-React >= 16.8.0
-
 ## Setting
 
 Wrap the top folder with a provider. that's all!
 
 ```tsx
-import ModalProvider from "react-simple-modal-controller";
+import { ModalProvider } from "react-simple-modal-controller";
 
 const App = () => {
   return <ModalProvider>...</ModalProvider>;
@@ -28,6 +28,8 @@ const App = () => {
 ### basic modal
 
 ```tsx
+import { modal } from 'react-simple-modal-controller';
+
 const openModal = () => {
   modal.open(ModalComponent, { title: "test" });
 };
@@ -51,6 +53,8 @@ const ModalComponent = ({ title }: { title: string }) => {
 ### async modal
 
 ```tsx
+import { modal } from 'react-simple-modal-controller';
+
 const openAsyncModal = async () => {
   try {
     const response = await modal.openAsync<UserConsentResponse>(AsyncModalComponent, {
