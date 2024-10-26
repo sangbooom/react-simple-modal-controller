@@ -1,11 +1,10 @@
 import { ModalInfo } from "../types/modal";
 import { dispatchModal } from "./store";
 
-const openAsync = <V>(
-  id: ModalInfo["id"],
-  Component: ModalInfo["Component"],
-  props: ModalInfo["props"]
-): Promise<V> => {
+const getRandomId = () => Math.random().toString(36).slice(2);
+
+const openAsync = <V>(Component: ModalInfo["Component"], props?: ModalInfo["props"]): Promise<V> => {
+  const id = getRandomId();
   return new Promise((resolve) => {
     dispatchModal({
       type: "OPEN_ASYNC",
@@ -20,11 +19,8 @@ const openAsync = <V>(
   });
 };
 
-const open = (
-  id: ModalInfo["id"],
-  Component: ModalInfo["Component"],
-  props: ModalInfo["props"]
-) => {
+const open = (Component: ModalInfo["Component"], props?: ModalInfo["props"]) => {
+  const id = getRandomId();
   dispatchModal({ type: "OPEN", id, Component, props });
 };
 const close = () => {

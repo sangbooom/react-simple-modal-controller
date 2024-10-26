@@ -1,12 +1,12 @@
 import { modal } from "../context/event";
 
 const openModal = () => {
-  modal.open("test1", TestModal, { title: "test" });
+  modal.open(TestModal, { title: "test" });
 };
 
 const openAsyncModal = async () => {
   try {
-    const res = await modal.openAsync<string>("test2", TestAsyncModal, {
+    const res = await modal.openAsync<string>(TestAsyncModal, {
       title: "test",
     });
     console.log({ res });
@@ -34,7 +34,7 @@ export default TestPage;
  * 아래는 모달 컴포넌트
  */
 
-const TestModal = ({ title }: { title: string}) => {
+const TestModal = ({ title }: { title: string }) => {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
@@ -53,7 +53,7 @@ const TestModal = ({ title }: { title: string}) => {
   );
 };
 
-const TestAsyncModal = ({ resolve, title }: { resolve: (value: string) => void, title: string}) => {
+const TestAsyncModal = ({ resolve, title }: { resolve: (value: string) => void; title: string }) => {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
