@@ -1,74 +1,97 @@
-# react-simple-modal-controller 
+# react-simple-modal-controller
 
-## Example
+## Installation
+
+```
+npm install react-simple-modal-controller
+```
+
+## Setting
+
+Wrap the top folder with a provider. that's all!
+
 ```tsx
-import { modal } from "../context/event";
-import { ModalResolver } from "../types/modal";
+import ModalProvider from "react-simple-modal-controller";
 
+const App = () => {
+  return <ModalProvider>...</ModalProvider>;
+};
+```
+
+## Usage
+
+### basic modal
+
+```tsx
 const openModal = () => {
-  modal.open(TestModal, { title: "test" });
+  modal.open(ModalComponent, { title: "test" });
 };
 
+const Page = () => {
+  return <button onClick={openModal}>modal open</button>;
+};
+
+const ModalComponent = ({ title }: { title: string }) => {
+  return (
+    <div className="modal">
+      <h2>{title}</h2>
+      <button onClick={modal.close}>ok</button>
+      <button onClick={modal.close}>cancel</button>
+      <button onClick={openModal}>nesting modal open</button>
+    </div>
+  );
+};
+```
+
+### async modal
+
+```tsx
 const openAsyncModal = async () => {
   try {
-    const res = await modal.openAsync<string>(TestAsyncModal, {
-      title: "test",
+    const response = await modal.openAsync<UserConsentResponse>(AsyncModalComponent, {
+      userId: 123,
     });
-    console.log({ res });
+    if(response) {
+        ...
+    } else {
+        ...
+    }
   } catch (error) {
-    console.log({ error });
+    ...
   }
 };
 
-const TestPage = () => {
+const Page = () => {
+  return <button onClick={openAsyncModal}>
+    asyncModal open
+  </button>
+};
+
+const TestAsyncModal = ({ resolve, userId }: { resolve: ModalResolver<string>; userId: number }) => {
   return (
-    <div className="app">
-      <button className="open-modal-btn" onClick={openModal}>
-        modal open
+    <div className="modal">
+      <h2>{title}</h2>
+      <button
+        onClick={async () => {
+          const response = await getUserConsent(userId);
+          resolve(response);
+        }}
+      >
+        ok
       </button>
-      <button className="open-modal-btn" onClick={openAsyncModal}>
-        asyncModal open
+      <button
+        onClick={() => {
+          reject(null);
+          modal.close();
+        }}
+      >
+        cancel
       </button>
     </div>
   );
 };
-
-export default TestPage;
-
-
-const TestModal = ({ title }: { title: string }) => {
-  return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <h2>{title}</h2>
-        <button className="open-modal-btn" onClick={modal.close}>
-          ok
-        </button>
-        <button className="modal-close" onClick={modal.close}>
-          cancel
-        </button>
-        <button className="open-modal-btn" onClick={openModal}>
-          nesting modal open
-        </button>
-      </div>
-    </div>
-  );
-};
-
-const TestAsyncModal = ({ resolve, title }: { resolve: ModalResolver<string>; title: string }) => {
-  return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <h2>{title}</h2>
-        <button className="open-modal-btn" onClick={() => resolve("OK")}>
-          ok
-        </button>
-        <button className="modal-close" onClick={() => modal.close()}>
-          cancel
-        </button>
-      </div>
-    </div>
-  );
-};
-
 ```
+
+## Playground
+
+[![Edit react-simple-modal-controller](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/sandbox/react-simple-modal-controller-v83lkn)
