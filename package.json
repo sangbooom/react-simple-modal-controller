@@ -1,7 +1,28 @@
 {
   "name": "react-simple-modal-controller",
+  "description": "simple and convenient modal-controller for react",
+  "keywords": [
+    "react",
+    "modal",
+    "modal-controller",
+    "react-modal",
+    "react-simple-modal",
+    "react-modal-controller"
+  ],
+  "author": {
+    "name": "SangBeom Park",
+    "email": "tkdqja4164@naver.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sangbooom/react-simple-modal-controller.git",
+    "directory": "dist"
+  },
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "browser": "./browser/specific/main.js",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -20,7 +41,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prepare": "rm -rf dist && mkdir dist && tsc"
   },
   "eslintConfig": {
     "extends": [
