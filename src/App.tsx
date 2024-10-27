@@ -1,11 +1,14 @@
 import React from "react";
-import TestPage from "./example/TestPage";
+import AsyncModalButton from "./example/AsyncModal";
+import BasicModalButton from "./example/BasicModal";
+import "./example/Modal.css";
 import { ModalProvider } from "./lib/components/ModalProvider";
 
 function App() {
   return (
     <ModalProvider>
-      <TestPage />
+      <BasicModalButton />
+      <AsyncModalButton />
     </ModalProvider>
   );
 }
