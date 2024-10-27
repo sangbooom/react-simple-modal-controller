@@ -7,7 +7,7 @@ interface ModalProviderProps {
   children: ReactNode;
 }
 
-const ModalProvider = ({ children }: ModalProviderProps) => {
+export const ModalProvider = ({ children }: ModalProviderProps) => {
   const modalInfos = useSyncModalStore();
 
   useEffect(() => {
@@ -33,5 +33,3 @@ const ModalProvider = ({ children }: ModalProviderProps) => {
     </>
   );
 };
-
-export default ModalProvider;

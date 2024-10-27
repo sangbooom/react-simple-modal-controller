@@ -1,6 +1,6 @@
 import React from "react";
-import ModalProvider from "./lib/components/ModalProvider";
 import TestPage from "./example/TestPage";
+import { ModalProvider } from "./lib/components/ModalProvider";
 
 function App() {
   return (

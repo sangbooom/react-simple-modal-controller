@@ -1,3 +1,2 @@
-import ModalProvider from "./components/ModalProvider";
-export { ModalProvider };
+export { ModalProvider } from "./components/ModalProvider";
 export { modal } from "./context/event";
