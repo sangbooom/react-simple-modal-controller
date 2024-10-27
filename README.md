@@ -3,6 +3,7 @@
 A simple and convenient modal controller for react
 
 ## React dependency
+
 `React >= 16.8.0`
 
 ## Installation
@@ -28,7 +29,7 @@ const App = () => {
 ### basic modal
 
 ```tsx
-import { modal } from 'react-simple-modal-controller';
+import { modal } from "react-simple-modal-controller";
 
 const openModal = () => {
   modal.open(ModalComponent, { title: "test" });
@@ -57,10 +58,10 @@ import { modal } from 'react-simple-modal-controller';
 
 const openAsyncModal = async () => {
   try {
-    const response = await modal.openAsync<UserConsentResponse>(AsyncModalComponent, {
+    const isOk = await modal.openAsync<boolean>(AsyncModalComponent, {
       userId: 123,
     });
-    if(response) {
+    if(isOk) {
         ...
     } else {
         ...
@@ -71,29 +72,17 @@ const openAsyncModal = async () => {
 };
 
 const Page = () => {
-  return <button onClick={openAsyncModal}>
-    asyncModal open
-  </button>
+  return <button onClick={openAsyncModal}>asyncModal open</button>
 };
 
-const TestAsyncModal = ({ resolve, userId }: { resolve: ModalResolver<string>; userId: number }) => {
+const TestAsyncModal = ({ resolve, userId }: { resolve: ModalResolver<boolean>; userId: number }) => {
   return (
     <div className="modal">
       <h2>{title}</h2>
-      <button
-        onClick={async () => {
-          const response = await getUserConsent(userId);
-          resolve(response);
-        }}
-      >
+      <button onClick={() => resolve(true)}>
         ok
       </button>
-      <button
-        onClick={() => {
-          reject(null);
-          modal.close();
-        }}
-      >
+      <button onClick={() => resolve(false)}>
         cancel
       </button>
     </div>
