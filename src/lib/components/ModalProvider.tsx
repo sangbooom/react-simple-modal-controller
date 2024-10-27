@@ -22,13 +22,15 @@ export const ModalProvider = ({ children }: ModalProviderProps) => {
     <>
       {children}
       <Portal>
-        {modalInfos.map((topComponentInfo) => (
-          <topComponentInfo.Component
-            key={topComponentInfo.id}
-            resolve={topComponentInfo.resolve}
-            {...(topComponentInfo?.props ?? {})}
-          />
-        ))}
+        {modalInfos.map((topComponentInfo) => {
+          return (
+            <topComponentInfo.Component
+              key={topComponentInfo.id}
+              {...(topComponentInfo.resolve && { resolve: topComponentInfo.resolve })}
+              {...(topComponentInfo?.props ?? {})}
+            />
+          );
+        })}
       </Portal>
     </>
   );

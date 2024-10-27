@@ -17,10 +17,7 @@ export type ModalReducerAction<V = unknown> =
   | { type: "CLOSE" }
   | { type: "CLEAR" };
 
-export const modalReducer = <V>(
-  state: ModalInfo[],
-  action: ModalReducerAction<V>
-) => {
+export const modalReducer = <V>(state: ModalInfo[], action: ModalReducerAction<V>) => {
   switch (action.type) {
     case "OPEN":
       return [
@@ -39,7 +36,7 @@ export const modalReducer = <V>(
           id: action.id,
           Component: action.Component,
           props: action.props,
-          resolve: (value: V) => action.resolver ? action.resolver(value) : undefined,
+          resolve: (value: V) => action.resolver(value),
         },
       ];
 
