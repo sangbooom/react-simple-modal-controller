@@ -2,10 +2,6 @@
 
 A simple and convenient modal controller for react
 
-## React dependency
-
-`React >= 16.8.0`
-
 ## Installation
 
 ```
