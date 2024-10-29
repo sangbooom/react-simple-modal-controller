@@ -1,4 +1,4 @@
-import { useSyncExternalStore } from "react";
+import { useSyncExternalStore } from "use-sync-external-store/shim";
 import { registerModalStore } from "./store";
 
 export const useSyncModalStore = () => {
