@@ -27,11 +27,13 @@ const App = () => {
 ```tsx
 import { modal } from "react-simple-modal-controller";
 
-const openModal = () => {
-  modal.open(ModalComponent, { title: "test" });
-};
 
 const Page = () => {
+  const openModal = () => {
+    modal.open(ModalComponent, { title: "test" });
+  };
+  
+  ...
   return <button onClick={openModal}>modal open</button>;
 };
 
@@ -39,7 +41,14 @@ const ModalComponent = ({ title }: { title: string }) => {
   return (
     <div className="modal">
       <h2>{title}</h2>
-      <button onClick={modal.close}>ok</button>
+      <button
+        onClick={() => {
+          // something work
+          modal.close();
+        }}
+      >
+        ok
+      </button>
       <button onClick={modal.close}>cancel</button>
       <button onClick={openModal}>nesting modal open</button>
     </div>
@@ -52,29 +61,30 @@ const ModalComponent = ({ title }: { title: string }) => {
 ```tsx
 import { modal } from 'react-simple-modal-controller';
 
-const openAsyncModal = async () => {
-  try {
-    const isOk = await modal.openAsync<boolean>(AsyncModalComponent, {
-      userId: 123,
-    });
-    if(isOk) {
-        ...
-    } else {
-        ...
-    }
-  } catch (error) {
-    ...
-  }
-};
 
 const Page = () => {
+  const openAsyncModal = async () => {
+    try {
+      const isOk = await modal.openAsync<boolean>(AsyncModalComponent, {
+        userId: 123,
+      });
+      if(isOk) {
+          ...
+      } else {
+          ...
+      }
+    } catch (error) {
+      ...
+    }
+  };
+
+  ...
   return <button onClick={openAsyncModal}>asyncModal open</button>
 };
 
-const TestAsyncModal = ({ resolve, userId }: { resolve: ModalResolver<boolean>; userId: number }) => {
+const AsyncModalComponent = ({ resolve, userId }: { resolve: (value: boolean) => void; userId: number }) => {
   return (
     <div className="modal">
-      <h2>{title}</h2>
       <button onClick={() => resolve(true)}>
         ok
       </button>
