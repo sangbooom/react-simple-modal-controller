@@ -27,7 +27,6 @@ const App = () => {
 ```tsx
 import { modal } from "react-simple-modal-controller";
 
-
 const Page = () => {
   const openModal = () => {
     modal.open(ModalComponent, { title: "test" });
@@ -60,7 +59,6 @@ const ModalComponent = ({ title }: { title: string }) => {
 
 ```tsx
 import { modal } from 'react-simple-modal-controller';
-
 
 const Page = () => {
   const openAsyncModal = async () => {
